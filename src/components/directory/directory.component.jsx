@@ -11,33 +11,33 @@ class Directory extends React.Component {
                   title: 'soft',
                   imageUrl: `${require('../../assets/akin-cakiner-UW-hO2OP2MY-unsplash.jpg')}`,
                   id: 1,
-                  linkUrl: 'shop/hats'
+                  linkUrl: 'shop/soft'
                 },
                 {
                   title: 'regal',
                   imageUrl: `${require('../../assets/amy-humphries-_igiFwG7Ybw-unsplash.jpg')}`,
                   id: 2,
-                  linkUrl: 'shop/jackets'
+                  linkUrl: 'shop/regal'
                 },
                 {
                   title: 'bold',
                   imageUrl: `${require('../../assets/anne-nygard-t32KvOBUKDA-unsplash.jpg')}`,
                   id: 3,
-                  linkUrl: 'shop/sneakers'
+                  linkUrl: 'shop/bold'
                 },
                 {
                   title: 'sophisticated',
                   imageUrl: `${require('../../assets/jenelle-hayes-K2SXdKPEhcg-unsplash.jpg')}`,
                   size: 'large',
                   id: 4,
-                  linkUrl: 'shop/womens'
+                  linkUrl: 'shop/sophisticated'
                 },
                 {
                   title: 'shabby chic',
                   imageUrl: `${require('../../assets/sandie-clarke-Xn5uchPtzP4-unsplash.jpg')}`,
                   size: 'large',
                   id: 5,
-                  linkUrl: 'shop/mens'
+                  linkUrl: 'shop/shabbychic'
                 }
               ]              
         }
@@ -47,8 +47,8 @@ class Directory extends React.Component {
         return (
             <div className="directory-menu">
                 {
-                    this.state.sections.map(({ title, imageUrl, id, size }) => (
-                        <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
+                    this.state.sections.map(({ id, ...sectionProps }) => (
+                        <MenuItem key={id} {...sectionProps} /> // Spreads all remaining object properties as component props (so that you don't have to write things like title={title})
                     ))
                 }
             </div>
