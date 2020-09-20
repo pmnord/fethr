@@ -1,32 +1,22 @@
 import React from "react";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch, Link, withRouter } from "react-router-dom";
 
 import "./App.css";
+import Header from "./components/header/header.component";
 
 import HomePage from "./pages/homepage/homepage.component";
-import Regal from "./pages/regal/regal.component";
+import ShopPage from "./pages/shop/shop.component";
 
-const RegalPage = (props) => {
-  console.log(props);
-  return (
-    <div>
-      <h1>REGAL PAGE </h1>
-    </div>
-  );
-};
-
-function App() {
+function App({ location }) {
   return (
     <div className="App">
-      <Link to="/">
-        <img src={`${require("./assets/logo.png")}`} alt="fethr logo" />
-      </Link>
+      <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/regal" component={RegalPage} />
+        <Route path="/shop" component={ShopPage} />
       </Switch>
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);
