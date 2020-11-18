@@ -1,3 +1,3 @@
 # fethr ~ A Bespoke Boutique
 
-This is a mockup of an ecommerce site built with React and Firebase.
+A mockup ecommerce site built with React, Redux, and Firebase.
