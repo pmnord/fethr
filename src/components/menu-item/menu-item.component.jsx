@@ -20,4 +20,5 @@ const MenuItem = ({ title, imageUrl, size, match, linkUrl, history }) => {
   );
 };
 
-export default withRouter(MenuItem); // withRouter returns a MenuItem component with Router props.
+export default withRouter(MenuItem); 
+// withRouter is a Higher Order Component that returns MenuItem with Router props
