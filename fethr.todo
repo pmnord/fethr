@@ -1,0 +1,17 @@
+'Cmd/Ctrl+Enter' // Triggers `Todo: Toggle Box`
+'Alt+Enter' // Triggers `Todo: Toggle Box`
+'Alt+D' // Triggers `Todo: Toggle Done`
+'Alt+C' // Triggers `Todo: Toggle Cancelled`
+'Alt+S' // Triggers `Todo: Toggle Start`
+'Cmd/Ctrl+Shift+A' // Triggers  `Todo: Archive`
+
+firestore.collection().doc().collection().doc()
+
+☐ Add .todo to global .gitignore rules
+
+Archive:
+  ✔ Make another thing work @started(20-11-19 14:03) @done(20-11-19 14:10) @lasted(7m5s)
+  ✔ delete thing @started(20-11-19 14:03) @done(20-11-19 14:03) @lasted(56s)
+  ✔ Make the thing work @done(20-11-19 14:02)
+  ✔ @done(20-11-19 14:00)
+
