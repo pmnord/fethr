@@ -5,9 +5,11 @@
 'Alt+S' // Triggers `Todo: Toggle Start`
 'Cmd/Ctrl+Shift+A' // Triggers  `Todo: Archive`
 
-firestore.collection().doc().collection().doc()
+firestore.collection().doc().collection().doc() // Example firestore architecture
 
 ☐ Add .todo to global .gitignore rules
+☐ Change logo png to svg
+☐ Write higher order PublicRoute/PrivateRoute components rather than using Redirect
 
 Archive:
   ✔ Make another thing work @started(20-11-19 14:03) @done(20-11-19 14:10) @lasted(7m5s)
