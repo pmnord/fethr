@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { auth } from "../../firebase/firebase.utils";
+import { connect } from "react-redux";
+import { compose } from "redux";
 
 import "./header.styles.scss";
 
@@ -34,4 +36,8 @@ const Header = ({ currentUser }) => (
   </div>
 );
 
-export default withRouter(Header);
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+export default compose(withRouter, connect(mapStateToProps))(Header);
