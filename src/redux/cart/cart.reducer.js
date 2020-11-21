@@ -1,6 +1,7 @@
 // Import types from cart.types
 import { TOGGLE_CART_HIDDEN } from "./cart.types";
 import { ADD_CART_ITEM } from "./cart.types";
+import { addItemToCart } from "./cart.utils"; //Increments item.quantity in case of duplicate items
 
 const INITIAL_STATE = {
   hidden: true,
@@ -17,7 +18,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case ADD_CART_ITEM:
       return {
         ...state,
-        cartItems: [...state.cartItems, action.payload],
+        cartItems: addItemToCart(state.cartItems, action.payload),
       };
     default:
       return state;
