@@ -7,6 +7,11 @@ export const selectCartItems = createSelector(
   (cart) => cart.cartItems // Return the value we want out of selectors. Args are passed in the same order they appear in the array.
 );
 
+export const selectCartHidden = createSelector(
+  [selectCart],
+  (cart) => cart.hidden
+);
+
 export const selectCartItemsCount = createSelector(
   [selectCartItems],
   (cartItems) => cartItems.reduce((acc, cur) => acc + cur.quantity, 0)
