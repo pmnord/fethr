@@ -7,6 +7,7 @@ import { compose } from "redux";
 import { selectCartHidden } from "../../redux/cart/cart.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { createStructuredSelector } from "reselect";
+import { ReactComponent as Logo } from "../../assets/logo.svg";
 
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
@@ -14,12 +15,7 @@ import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 const Header = ({ currentUser, hidden }) => (
   <div className="header">
     <Link className="logo-container" to="/">
-      <img
-        className="logo"
-        src={`${require("../../assets/logo.png")}`}
-        alt="fethr logo"
-        //   style={{ height: '8rem', margin: `${location.pathname === '/' ? '0 80px' : '0' }`}}
-      />
+      <Logo className="logo" alt="fethr logo" />
     </Link>
     <div className="options">
       <Link className="option" to="/shop">
