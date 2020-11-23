@@ -1,4 +1,5 @@
 import React from "react";
+import "./checkout-item.styles.scss";
 import { connect } from "react-redux";
 import {
   removeCartItem,
@@ -6,7 +7,8 @@ import {
 } from "../../redux/cart/cart.actions";
 
 const CheckoutItem = ({
-  item: { id, imageUrl, name, price, quantity },
+  item,
+  item: { imageUrl, name, price, quantity },
   dispatch,
 }) => {
   return (
@@ -19,11 +21,11 @@ const CheckoutItem = ({
       <span className="price">${price}</span>
       <div
         className="remove-button"
-        onClick={() => dispatch(removeCartItemAll(id))}
+        onClick={() => dispatch(removeCartItemAll(item))}
       >
         &#10005;
+        {/* utf-8 wingding */}
       </div>
-      {/* remove button will be a utf-8 wingding with code 10005 */}
     </div>
   );
 };
