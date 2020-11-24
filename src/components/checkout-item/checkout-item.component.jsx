@@ -21,10 +21,12 @@ const CheckoutItem = ({
       <span className="quantity">
         <div className="arrow" onClick={() => dispatch(removeCartItem(item))}>
           &#10094;
+          {/* utf-8 wingding */}
         </div>
         <span className="value">{quantity}</span>
         <div className="arrow" onClick={() => dispatch(addCartItem(item))}>
           &#10095;
+          {/* utf-8 wingding */}
         </div>
       </span>
       <span className="price">${price * quantity}</span>
