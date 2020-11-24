@@ -17,7 +17,7 @@ export const addItemToCart = (cartItems, itemToAdd) => {
 
 export const removeItemFromCart = (cartItems, id) => {
   return cartItems.map((item) => {
-    if (item.id === id) {
+    if (item.id === id && item.quantity > 1) {
       item.quantity--;
     }
     return { ...item };
