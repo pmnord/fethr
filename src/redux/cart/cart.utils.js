@@ -20,7 +20,7 @@ export const removeItemFromCart = (cartItems, id) => {
     if (item.id === id) {
       item.quantity--;
     }
-    return item;
+    return { ...item };
   });
 };
 
