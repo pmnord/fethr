@@ -1,4 +1,5 @@
 import { createSelector } from "reselect";
+import { memoize } from "lodash.memoize";
 
 const COLLECTION_ID_MAP = {
   // Map the string value to the id
@@ -16,9 +17,14 @@ export const selectCollections = createSelector(
   (shop) => shop.collections
 );
 
-export const selectCollection = (collectionUrlParam) =>
+/* Because collectionUrlParam is passed in dynamically, 
+a new instance of selectCollection is called and is not memoized.
+
+In order to memoize it, we have to memoize the entire function with lodash.memoize */
+export const selectCollection = memoize((collectionUrlParam) =>
   createSelector([selectCollections], (collections) =>
     collections.find(
       (collection) => collection.id === COLLECTION_ID_MAP[collectionUrlParam]
     )
-  );
+  )
+);
