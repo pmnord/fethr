@@ -10,18 +10,18 @@ const CollectionItem = ({ item, addCartItem }) => {
   const handleAddItem = () => addCartItem(item);
 
   return (
-    <div className="collection-item">
+    <div className='collection-item'>
       <div
-        className="image"
+        className='image'
         style={{
           backgroundImage: `url(${imageUrl})`,
         }}
       />
-      <div className="collection-footer">
-        <span className="name">{name}</span>
-        <span className="price">${price}</span>
+      <div className='collection-footer'>
+        <span className='name'>{name}</span>
+        <span className='price'>${price}</span>
       </div>
-      <CustomButton onClick={handleAddItem} className="inverted">
+      <CustomButton onClick={handleAddItem} inverted>
         Add to cart
       </CustomButton>
     </div>
