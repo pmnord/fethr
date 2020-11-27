@@ -17,7 +17,6 @@ import {
   Logo,
   OptionsContainer,
   OptionsLink,
-  OptionsDiv,
 } from "./header.styles";
 
 const Header = ({ currentUser, hidden }) => (
@@ -26,20 +25,16 @@ const Header = ({ currentUser, hidden }) => (
       <Logo alt='fethr logo' />
     </LogoContainer>
     <OptionsContainer>
-      <OptionsLink className='option' to='/shop'>
-        SHOP
-      </OptionsLink>
-      <OptionsLink className='option' to='/contact'>
-        CONTACT
-      </OptionsLink>
+      <OptionsLink to='/shop'>SHOP</OptionsLink>
+      <OptionsLink to='/contact'>CONTACT</OptionsLink>
       {currentUser ? (
-        <OptionsDiv className='option' onClick={() => auth.signOut()}>
+        <OptionsLink as='div' onClick={() => auth.signOut()}>
+          {/* Note the as='div' rendering OptionsLink as a div
+              despite the styled-component being a react-router-dom Link */}
           SIGN OUT
-        </OptionsDiv>
-      ) : (
-        <OptionsLink className='option' to='/signin'>
-          SIGN IN
         </OptionsLink>
+      ) : (
+        <OptionsLink to='/signin'>SIGN IN</OptionsLink>
       )}
       <CartIcon />
     </OptionsContainer>
