@@ -1,42 +1,50 @@
 import React from "react";
 import "./header.styles.scss";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { selectCartHidden } from "../../redux/cart/cart.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { createStructuredSelector } from "reselect";
-import { ReactComponent as Logo } from "../../assets/logo.svg";
 
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 
+import {
+  HeaderContainer,
+  LogoContainer,
+  Logo,
+  OptionsContainer,
+  OptionsLink,
+  OptionsDiv,
+} from "./header.styles";
+
 const Header = ({ currentUser, hidden }) => (
-  <div className="header">
-    <Link className="logo-container" to="/">
-      <Logo className="logo" alt="fethr logo" />
-    </Link>
-    <div className="options">
-      <Link className="option" to="/shop">
+  <HeaderContainer>
+    <LogoContainer to='/'>
+      <Logo alt='fethr logo' />
+    </LogoContainer>
+    <OptionsContainer>
+      <OptionsLink className='option' to='/shop'>
         SHOP
-      </Link>
-      <Link className="option" to="/contact">
+      </OptionsLink>
+      <OptionsLink className='option' to='/contact'>
         CONTACT
-      </Link>
+      </OptionsLink>
       {currentUser ? (
-        <div className="option" onClick={() => auth.signOut()}>
+        <OptionsDiv className='option' onClick={() => auth.signOut()}>
           SIGN OUT
-        </div>
+        </OptionsDiv>
       ) : (
-        <Link className="option" to="/signin">
+        <OptionsLink className='option' to='/signin'>
           SIGN IN
-        </Link>
+        </OptionsLink>
       )}
       <CartIcon />
-    </div>
+    </OptionsContainer>
     {!hidden && <CartDropdown />}
-  </div>
+  </HeaderContainer>
 );
 
 // const mapStateToProps = (state) => ({

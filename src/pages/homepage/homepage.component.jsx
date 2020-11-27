@@ -1,16 +1,17 @@
 import React from "react";
 
-import "./homepage.styles.scss";
-
 import Directory from "../../components/directory/directory.component";
+import { HomePageContainer } from "./homepage.styles";
 
-const HomePage = (props) => {
-//   console.log(props); // This component has access to Router props because it is being rendered by a Router component.
+const HomePage = () => {
+  // console.log(props) shows the Router props
+  // This component has access to Router props by default
+  // because it is being rendered by a Router component
 
   return (
-    <div className="homepage">
+    <HomePageContainer>
       <Directory />
-    </div>
+    </HomePageContainer>
   );
 };
 
