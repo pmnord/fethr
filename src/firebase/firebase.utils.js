@@ -19,16 +19,10 @@ const config = {
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
-  // console.log(firestore.doc("users/1234"));
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
   // Always returns a reference to a place in the database even if nothing exists there
 
-  const userRef = firestore.doc(`users/${userAuth.uid}`);
   const snapShot = await userRef.get();
-
-  // console.log(snapShot);
-  // console.log(snapShot.exists);
-  // console.log(snapShot.id);
-  // console.log(snapShot.ref);
 
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
