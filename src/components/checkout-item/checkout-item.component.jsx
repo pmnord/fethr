@@ -1,5 +1,5 @@
 import React from "react";
-import "./checkout-item.styles.scss";
+
 import { connect } from "react-redux";
 import {
   addCartItem,
@@ -7,37 +7,45 @@ import {
   removeCartItemAll,
 } from "../../redux/cart/cart.actions";
 
+import {
+  CheckoutItemContainer,
+  ImageContainer,
+  Price,
+  Name,
+  Quantity,
+  RemoveButton,
+  QuantityValue,
+  QuantityArrow,
+} from "./checkout-item.styles";
+
 const CheckoutItem = ({
   item,
   item: { imageUrl, name, price, quantity },
   dispatch,
 }) => {
   return (
-    <div className="checkout-item">
-      <div className="image-container">
-        <img src={imageUrl} alt="item" />
-      </div>
-      <span className="name">{name}</span>
-      <span className="quantity">
-        <div className="arrow" onClick={() => dispatch(removeCartItem(item))}>
+    <CheckoutItemContainer>
+      <ImageContainer>
+        <img src={imageUrl} alt='item' />
+      </ImageContainer>
+      <Name>{name}</Name>
+      <Quantity>
+        <QuantityArrow onClick={() => dispatch(removeCartItem(item))}>
           &#10094;
           {/* utf-8 wingding */}
-        </div>
-        <span className="value">{quantity}</span>
-        <div className="arrow" onClick={() => dispatch(addCartItem(item))}>
+        </QuantityArrow>
+        <QuantityValue>{quantity}</QuantityValue>
+        <QuantityArrow onClick={() => dispatch(addCartItem(item))}>
           &#10095;
           {/* utf-8 wingding */}
-        </div>
-      </span>
-      <span className="price">${price * quantity}</span>
-      <div
-        className="remove-button"
-        onClick={() => dispatch(removeCartItemAll(item))}
-      >
+        </QuantityArrow>
+      </Quantity>
+      <Price>${price * quantity}</Price>
+      <RemoveButton onClick={() => dispatch(removeCartItemAll(item))}>
         &#10005;
         {/* utf-8 wingding */}
-      </div>
-    </div>
+      </RemoveButton>
+    </CheckoutItemContainer>
   );
 };
 
