@@ -1,30 +1,36 @@
 import React from "react";
-import "./collection-item.styles.scss";
-import { addCartItem } from "../../redux/cart/cart.actions";
-import { connect } from "react-redux";
 
-import CustomButton from "../custom-button/custom-button.component";
+import { connect } from "react-redux";
+import { addCartItem } from "../../redux/cart/cart.actions";
+
+import {
+  CollectionItemContainer,
+  Image,
+  CollectionFooter,
+  InvertedButton,
+  Name,
+  Price,
+} from "./collection-item.styles";
 
 const CollectionItem = ({ item, addCartItem }) => {
   const { name, price, imageUrl } = item;
   const handleAddItem = () => addCartItem(item);
 
   return (
-    <div className='collection-item'>
-      <div
-        className='image'
-        style={{
-          backgroundImage: `url(${imageUrl})`,
-        }}
-      />
-      <div className='collection-footer'>
-        <span className='name'>{name}</span>
-        <span className='price'>${price}</span>
-      </div>
-      <CustomButton onClick={handleAddItem} inverted>
+    <CollectionItemContainer>
+      <Image imageUrl={imageUrl} className='CollectionItem__Image' />
+      <CollectionFooter>
+        <Name>{name}</Name>
+        <Price>${price}</Price>
+      </CollectionFooter>
+      <InvertedButton
+        onClick={handleAddItem}
+        className='CollectionItem__InvertedButton'
+        inverted
+      >
         Add to cart
-      </CustomButton>
-    </div>
+      </InvertedButton>
+    </CollectionItemContainer>
   );
 };
 
