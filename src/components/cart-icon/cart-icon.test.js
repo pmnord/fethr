@@ -5,15 +5,15 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "../../redux/store";
 
-import StripButton from "./stripe-button.component";
+import CartIcon from "./cart-icon.component";
 
-test("renders the SignUp page", () => {
+test("renders the CartIcon component", () => {
   const div = document.createElement("div");
   ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <PersistGate persistor={persistor}>
-          <StripButton />
+          <CartIcon />
         </PersistGate>
       </BrowserRouter>
     </Provider>,

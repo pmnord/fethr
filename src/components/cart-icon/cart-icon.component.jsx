@@ -1,17 +1,22 @@
 import React from "react";
-import "./cart-icon.styles.scss";
-import { ReactComponent as ShoppingBagIcon } from "../../assets/shopping-bag.svg";
+
 import { connect } from "react-redux";
 import { toggleCartHidden } from "../../redux/cart/cart.actions";
 import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
 import { createStructuredSelector } from "reselect";
 
+import {
+  CartIconContainer,
+  ShoppingBagIcon,
+  ItemCountSpan,
+} from "./cart-icon.styles";
+
 const CartIcon = ({ toggleCartHidden, itemCount }) => {
   return (
-    <div className="cart-icon" onClick={toggleCartHidden}>
-      <ShoppingBagIcon className="shopping-bag-icon" />
-      <span className="item-count">{itemCount}</span>
-    </div>
+    <CartIconContainer onClick={toggleCartHidden}>
+      <ShoppingBagIcon />
+      <ItemCountSpan>{itemCount}</ItemCountSpan>
+    </CartIconContainer>
   );
 };
 
@@ -22,6 +27,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = createStructuredSelector({
   itemCount: selectCartItemsCount,
 });
+
 /* 
 There's a problem here. 
 Every time state changes it gets passed a new object.
