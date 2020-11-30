@@ -12,12 +12,12 @@ import {
   Price,
 } from "./collection-item.styles";
 
-const CollectionItem = ({ item, addCartItem }) => {
+const CollectionItem = ({ item, addCartItem, className }) => {
   const { name, price, imageUrl } = item;
   const handleAddItem = () => addCartItem(item);
 
   return (
-    <CollectionItemContainer>
+    <CollectionItemContainer className={className}>
       <Image imageUrl={imageUrl} className='CollectionItem__Image' />
       <CollectionFooter>
         <Name>{name}</Name>
