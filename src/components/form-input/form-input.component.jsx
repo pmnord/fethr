@@ -1,6 +1,8 @@
 import React from "react";
 
-import "./form-input.styles.scss";
+// import "./form-input.styles.scss";
+
+import { FormInputContainer, Input } from "./form-input.styles";
 
 const FormInput = ({ handleChange, label, ...otherProps }) => {
   // We're going to bubble up any change on the component via handleChange
@@ -12,8 +14,8 @@ const FormInput = ({ handleChange, label, ...otherProps }) => {
   }
 
   return (
-    <div className="group">
-      <input className="form-input" onChange={handleChange} {...otherProps} />
+    <FormInputContainer>
+      <Input onChange={handleChange} {...otherProps} />
       {label && (
         <label
           className={`${
@@ -23,7 +25,7 @@ const FormInput = ({ handleChange, label, ...otherProps }) => {
           {label}
         </label>
       )}
-    </div>
+    </FormInputContainer>
   );
 };
 
