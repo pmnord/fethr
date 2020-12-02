@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selectors";
-import { selectCollectionsForPreview } from "./redux/shop/shop.selectors";
 
 import Header from "./components/header/header.component";
 import HomePage from "./pages/homepage/homepage.component";
@@ -39,6 +38,9 @@ class App extends React.Component {
         // Calling .data() on it returns a JSON object of the document
       }
       setCurrentUser(userAuth);
+
+      // To add local collections to the firestore,
+      // run the firestore.utils function below.
 
       // addCollectionAndDocuments(
       //   "collections",
