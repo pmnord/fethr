@@ -1,5 +1,5 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import { withRouter } from "react-router-dom";
 
 import {
   MenuItemContainer,
@@ -7,18 +7,18 @@ import {
   Title,
   Subtitle,
   Background,
-} from './menu-item.styles';
+} from "./menu-item.styles";
 
 const MenuItem = ({ title, imageUrl, size, match, linkUrl, history }) => {
   return (
     <MenuItemContainer
-      className={`${size} menu-item`}
+      className={`${size}`}
       onClick={() => history.push(`${match.url}${linkUrl}`)}
     >
-      <Background className="MenuItem__Background" imageUrl={imageUrl} />
-      <Content className="content">
-        <Title className="title">{title.toUpperCase()}</Title>
-        <Subtitle className="subtitle">SHOP NOW</Subtitle>
+      <Background className='MenuItem__Background' imageUrl={imageUrl} />
+      <Content className='content'>
+        <Title className='title'>{title.toUpperCase()}</Title>
+        <Subtitle className='subtitle'>SHOP NOW</Subtitle>
       </Content>
     </MenuItemContainer>
   );
