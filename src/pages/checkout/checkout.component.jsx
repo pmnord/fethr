@@ -1,5 +1,4 @@
 import React from "react";
-import "./checkout.styles.scss";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {
@@ -8,12 +7,18 @@ import {
 } from "../../redux/cart/cart.selectors";
 
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
-import StripeCheckoutButton from "../../components/stripe-button/stripe-button.component";
+import {
+  CheckoutPageContainer,
+  CheckoutHeader,
+  Total,
+  TestWarning,
+  StripeCheckoutButtonStyled,
+} from "./checkout.styles";
 
 const Checkout = ({ cartItems, total }) => {
   return (
-    <div className='checkout-page'>
-      <header className='checkout-header'>
+    <CheckoutPageContainer className='checkout-page'>
+      <CheckoutHeader className='checkout-header'>
         <div className='header-block'>
           <span>Product</span>
         </div>
@@ -29,20 +34,20 @@ const Checkout = ({ cartItems, total }) => {
         <div className='header-block'>
           <span>Remove</span>
         </div>
-      </header>
+      </CheckoutHeader>
       {cartItems.map((cartItem) => (
         <CheckoutItem key={cartItem.id} item={cartItem} />
       ))}
-      <div className='total'>
+      <Total className='total'>
         <span>TOTAL: ${total}</span>
-      </div>
-      <div className='test-warning'>
+      </Total>
+      <TestWarning className='test-warning'>
         *Please use the following test credit card for payments*
         <br />
         4242 4242 4242 4242 - Exp: 01/24 - CVV: 123
-      </div>
-      <StripeCheckoutButton price={total} />
-    </div>
+      </TestWarning>
+      <StripeCheckoutButtonStyled price={total} />
+    </CheckoutPageContainer>
   );
 };
 
