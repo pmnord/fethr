@@ -1,11 +1,13 @@
 import "./App.css";
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selectors";
-import { createStructuredSelector } from "reselect";
+import { selectCollectionsForPreview } from "./redux/shop/shop.selectors";
 
 import Header from "./components/header/header.component";
 import HomePage from "./pages/homepage/homepage.component";
@@ -26,6 +28,7 @@ class App extends React.Component {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
+        // Fires whenever the Snapshot changes
         userRef.onSnapshot((snapShot) => {
           setCurrentUser({
             id: snapShot.id,
@@ -36,6 +39,11 @@ class App extends React.Component {
         // Calling .data() on it returns a JSON object of the document
       }
       setCurrentUser(userAuth);
+
+      // addCollectionAndDocuments(
+      //   "collections",
+      //   collectionsArray.map(({ title, items }) => ({ title, items }))
+      // );
     });
     // Firebase auth open subscription will invoke the callback
     // The open subscription is an open messaging system with the firebase app
@@ -47,24 +55,24 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className='App'>
         <Header />
         <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route exact path="/checkout" component={CheckoutPage} />
+          <Route exact path='/' component={HomePage} />
+          <Route path='/shop' component={ShopPage} />
+          <Route exact path='/checkout' component={CheckoutPage} />
           <Route
             exact
-            path="/signin"
+            path='/signin'
             render={() =>
               this.props.currentUser ? (
-                <Redirect to="/" />
+                <Redirect to='/' />
               ) : (
                 <SignInAndSignUpPage />
               )
             }
           />
-          <Route path="/fethr" render={() => <Redirect to="/" />} />
+          <Route path='/fethr' render={() => <Redirect to='/' />} />
           {/* Github hosting is at the /fethr route so the above line autopushes to root */}
         </Switch>
       </div>

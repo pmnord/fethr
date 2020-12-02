@@ -16,11 +16,19 @@ const config = {
   measurementId: env.REACT_APP_measurementId,
 };
 
+firebase.initializeApp(config);
+
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
   const userRef = firestore.doc(`users/${userAuth.uid}`);
   // Always returns a reference to a place in the database even if nothing exists there
+
+  // Example: Getting data from firestore
+  // Rather than using fetch or axios, you get a Snapshot and call .data() on the documents
+  const collectionRef = firestore.collection("users");
+  const collectionSnapshot = await collectionRef.get();
+  console.log({ collection: collectionSnapshot.docs.map((doc) => doc.data()) });
 
   const snapShot = await userRef.get();
 
@@ -39,10 +47,24 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
       console.log("Error creating new user", error.message);
     }
   }
+
   return userRef;
 };
 
-firebase.initializeApp(config);
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = firestore.collection(collectionKey);
+
+  const batch = firestore.batch();
+  objectsToAdd.forEach((obj) => {
+    const newDocRef = collectionRef.doc(); // Generate a new document for this collection
+    batch.set(newDocRef, obj);
+  });
+
+  return await batch.commit(); // batch.commit() returns a promise, allowing chaining .then
+};
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
