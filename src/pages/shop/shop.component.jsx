@@ -12,13 +12,18 @@ import {
 import CollectionsOverview from "../../components/collections-overview/collections-overview.component";
 import CollectionPage from "../../pages/collection/collection.component";
 import { ShopPageContainer } from "./shop.styles";
+import WithSpinner from "../../components/with-spinner/with-spinner.component";
 
 // ShopPage is nested inside a Route in App.js, so it receives router props by default.
-// const ShopPage = ({ match }) => (
 
-// );
+const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
+const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
 class ShopPage extends React.Component {
+  state = {
+    loading: true,
+  };
+
   unsubscribeFromSnapshot = null;
 
   componentDidMount() {
@@ -26,6 +31,7 @@ class ShopPage extends React.Component {
     collectionRef.onSnapshot(async (snapshot) => {
       const collections = convertCollectionsSnapshotToMap(snapshot);
       this.props.updateCollections(collections);
+      this.setState({ loading: false });
     });
   }
 
@@ -33,10 +39,24 @@ class ShopPage extends React.Component {
     const { match } = this.props;
     return (
       <ShopPageContainer>
-        <Route exact path={`${match.path}`} component={CollectionsOverview} />
+        <Route
+          exact
+          path={`${match.path}`}
+          render={(routeProps) => (
+            <CollectionsOverviewWithSpinner
+              isLoading={this.state.loading}
+              {...routeProps}
+            />
+          )}
+        />
         <Route
           path={`${match.path}/:collectionId`}
-          component={CollectionPage}
+          render={(routeProps) => (
+            <CollectionPageWithSpinner
+              isLoading={this.state.loading}
+              {...routeProps}
+            />
+          )}
         />
       </ShopPageContainer>
     );

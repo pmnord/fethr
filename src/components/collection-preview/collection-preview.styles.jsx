@@ -10,6 +10,11 @@ export const CollectionPreviewContainer = styled.div`
 export const Title = styled.h1`
   font-size: 28px;
   margin-bottom: 25px;
+  width: fit-content;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 export const Preview = styled.div`

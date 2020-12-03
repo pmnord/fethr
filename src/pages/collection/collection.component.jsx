@@ -9,10 +9,11 @@ import {
   CollectionItemStyled,
 } from "./collection.styles";
 
-const CollectionPage = ({ match, collection: { title, items } }) => {
+const CollectionPage = ({ collection: { title, items } }) => {
   return (
     <CollectionPageContainer>
       <Title>{title}</Title>
+
       <Items>
         {items.map((item) => (
           <CollectionItemStyled key={item.id} item={item} />
