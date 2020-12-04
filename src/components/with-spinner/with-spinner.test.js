@@ -7,7 +7,8 @@ import { store, persistor } from "../../redux/store";
 
 import WithSpinner from "./with-spinner.component";
 
-test("renders the WithSpinner page", () => {
+// Disabled because it's being tested by the ShopPage smoke test
+xtest("renders the WithSpinner HOC", () => {
   const div = document.createElement("div");
   ReactDOM.render(
     <Provider store={store}>
