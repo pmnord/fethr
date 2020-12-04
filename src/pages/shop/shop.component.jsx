@@ -28,11 +28,30 @@ class ShopPage extends React.Component {
 
   componentDidMount() {
     const collectionRef = firestore.collection("collections");
+
+    // OBSERVER PATTERN
     collectionRef.onSnapshot(async (snapshot) => {
       const collections = convertCollectionsSnapshotToMap(snapshot);
       this.props.updateCollections(collections);
       this.setState({ loading: false });
     });
+
+    // // PROMISE PATTERN
+    // collectionRef
+    //   .get(/* Makes a get request to the collection ref */)
+    //   .then((snapshot) => {
+    //     const collections = convertCollectionsSnapshotToMap(snapshot);
+    //     this.props.updateCollections(collections);
+    //     this.setState({ loading: false });
+    //   });
+
+    // FETCH PATTERN
+    // fetch(
+    //   "https://firestore.googleapis.com/v1/projects/fethr-db/databases/(default)/documents/collections/"
+    //   // { headers: { Bearer: process.env.API_KEY } }
+    // )
+    //   .then((response) => response.json())
+    //   .then((data) => console.log(data));
   }
 
   render() {
