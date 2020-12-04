@@ -45,11 +45,3 @@ export const fetchCollectionsStartAsync = () => {
       .catch((error) => dispatch(fetchCollectionsFailure(error)));
   };
 };
-
-// // PROMISE PATTERN
-// collectionRef
-//   .get(/* Makes a get request to the collection ref */)
-//   .then((snapshot) => {
-//     const collections = convertCollectionsSnapshotToMap(snapshot);
-
-//   });

@@ -1,13 +1,13 @@
-import React from "react";
-import { connect } from "react-redux";
-import { selectCollection } from "../../redux/shop/shop.selectors";
+import React from 'react';
+import { connect } from 'react-redux';
+import { selectCollection } from '../../redux/shop/shop.selectors';
 
 import {
   CollectionPageContainer,
   Title,
   Items,
   CollectionItemStyled,
-} from "./collection.styles";
+} from './collection.styles';
 
 const CollectionPage = ({ collection: { title, items } }) => {
   return (

@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import { selectCollectionsForPreview } from "../../redux/shop/shop.selectors";
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCollectionsForPreview } from '../../redux/shop/shop.selectors';
 
-import CollectionPreview from "../../components/collection-preview/collection-preview.component";
-import { CollectionPreviewContainer } from "../collection-preview/collection-preview.styles";
+import CollectionPreview from '../../components/collection-preview/collection-preview.component';
+import { CollectionPreviewContainer } from '../collection-preview/collection-preview.styles';
 
 const CollectionsOverview = ({ collections }) => (
   <CollectionPreviewContainer className='collections-overview'>
