@@ -1,16 +1,16 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
-import runtimeEnv from "@mars/heroku-js-runtime-env";
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 const env = runtimeEnv();
 
 const config = {
   apiKey: env.REACT_APP_firebase_apiKey,
-  authDomain: "fethr-db.firebaseapp.com",
-  databaseURL: "https://fethr-db.firebaseio.com",
-  projectId: "fethr-db",
-  storageBucket: "fethr-db.appspot.com",
+  authDomain: 'fethr-db.firebaseapp.com',
+  databaseURL: 'https://fethr-db.firebaseio.com',
+  projectId: 'fethr-db',
+  storageBucket: 'fethr-db.appspot.com',
   messagingSenderId: env.REACT_APP_messagingSenderId,
   appId: env.REACT_APP_appId,
   measurementId: env.REACT_APP_measurementId,
@@ -26,9 +26,9 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   // Example: Getting data from firestore
   // Rather than using fetch or axios, you get a Snapshot and call .data() on the documents
-  const collectionRef = firestore.collection("users");
-  const collectionSnapshot = await collectionRef.get();
-  console.log({ collection: collectionSnapshot.docs.map((doc) => doc.data()) });
+  // const collectionRef = firestore.collection('users');
+  // const collectionSnapshot = await collectionRef.get();
+  // console.log({ collection: collectionSnapshot.docs.map((doc) => doc.data()) });
 
   const snapShot = await userRef.get();
 
@@ -44,7 +44,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         ...additionalData,
       });
     } catch (error) {
-      console.log("Error creating new user", error.message);
+      console.log('Error creating new user', error.message);
     }
   }
 
@@ -86,9 +86,9 @@ export const convertCollectionsSnapshotToMap = (collections) => {
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-const provider = new firebase.auth.GoogleAuthProvider(); // Initialize GoogleAuthProvider from firebase
-provider.setCustomParameters({ prompt: "select_account" }); // Always trigger the google select account popup
+export const googleProvider = new firebase.auth.GoogleAuthProvider(); // Initialize GoogleAuthProvider from firebase
+googleProvider.setCustomParameters({ prompt: 'select_account' }); // Always trigger the google select account popup
 
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 export default firebase;

@@ -1,7 +1,7 @@
 import { compose, createStore, applyMiddleware } from 'redux';
+import rootReducer from './root-reducer';
 import logger from 'redux-logger';
 import { persistStore } from 'redux-persist';
-import createSagaMiddleware from 'redux-saga';
 
 // import thunk from 'redux-thunk';
 /* 
@@ -11,9 +11,8 @@ and call the function with the dispatch method itself as the first argument, whi
 the function then uses as a callback when it finishes its async request.
 */
 
-import { fetchCollectionsStart } from './shop/shop.sagas';
-
-import rootReducer from './root-reducer';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './root-saga';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -30,7 +29,7 @@ export const store = createStore(
   composeEnhancers(applyMiddleware(...middlewares))
 );
 
-sagaMiddleware.run(fetchCollectionsStart);
+sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);
 
