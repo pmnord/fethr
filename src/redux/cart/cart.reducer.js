@@ -1,15 +1,11 @@
 // Import types from cart.types
-import {
-  TOGGLE_CART_HIDDEN,
-  ADD_CART_ITEM,
-  REMOVE_CART_ITEM,
-  REMOVE_CART_ITEM_ALL,
-} from "./cart.types";
+import CartActionTypes from './cart.types';
+
 import {
   addItemToCart,
   removeItemFromCart,
   removeAllOfItemFromCart,
-} from "./cart.utils"; //Increments item.quantity in case of duplicate items
+} from './cart.utils'; //Increments item.quantity in case of duplicate items
 
 const INITIAL_STATE = {
   hidden: true,
@@ -18,25 +14,30 @@ const INITIAL_STATE = {
 
 const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case TOGGLE_CART_HIDDEN:
+    case CartActionTypes.TOGGLE_CART_HIDDEN:
       return {
         ...state,
         hidden: !state.hidden,
       };
-    case ADD_CART_ITEM:
+    case CartActionTypes.ADD_CART_ITEM:
       return {
         ...state,
         cartItems: addItemToCart(state.cartItems, action.payload),
       };
-    case REMOVE_CART_ITEM:
+    case CartActionTypes.REMOVE_CART_ITEM:
       return {
         ...state,
         cartItems: removeItemFromCart(state.cartItems, action.payload),
       };
-    case REMOVE_CART_ITEM_ALL:
+    case CartActionTypes.REMOVE_CART_ITEM_ALL:
       return {
         ...state,
         cartItems: removeAllOfItemFromCart(state.cartItems, action.payload),
+      };
+    case CartActionTypes.CLEAR_CART:
+      return {
+        ...state,
+        cartItems: [],
       };
     default:
       return state;

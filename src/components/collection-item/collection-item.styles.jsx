@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import React from "react";
+import styled from 'styled-components';
+import React from 'react';
 
-import CustomButton from "../custom-button/custom-button.component";
+import CustomButton from '../custom-button/custom-button.component';
 
 export const CollectionItemContainer = styled.div`
   width: 90%;
@@ -53,9 +53,9 @@ const Button = styled(CustomButton)`
   display: none;
 `;
 
-export const InvertedButton = ({ children, className }) => {
+export const InvertedButton = ({ children, ...otherProps }) => {
   return (
-    <Button className={className} inverted>
+    <Button inverted {...otherProps}>
       {children}
     </Button>
   );

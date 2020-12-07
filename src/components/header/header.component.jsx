@@ -1,14 +1,15 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
-import { auth } from "../../firebase/firebase.utils";
-import { connect } from "react-redux";
-import { compose } from "redux";
-import { selectCartHidden } from "../../redux/cart/cart.selectors";
-import { selectCurrentUser } from "../../redux/user/user.selectors";
-import { createStructuredSelector } from "reselect";
+import React from 'react';
+import { withRouter } from 'react-router-dom';
+// import { auth } from '../../firebase/firebase.utils';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { createStructuredSelector } from 'reselect';
+import { signOutStart } from '../../redux/user/user.actions';
 
-import CartIcon from "../cart-icon/cart-icon.component";
-import CartDropdown from "../cart-dropdown/cart-dropdown.component";
+import CartIcon from '../cart-icon/cart-icon.component';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
 import {
   HeaderContainer,
@@ -16,9 +17,9 @@ import {
   Logo,
   OptionsContainer,
   OptionsLink,
-} from "./header.styles";
+} from './header.styles';
 
-const Header = ({ currentUser, hidden }) => (
+const Header = ({ currentUser, hidden, signOutStart }) => (
   <HeaderContainer>
     <LogoContainer to='/'>
       <Logo alt='fethr logo' />
@@ -27,7 +28,7 @@ const Header = ({ currentUser, hidden }) => (
       <OptionsLink to='/shop'>SHOP</OptionsLink>
       <OptionsLink to='/contact'>CONTACT</OptionsLink>
       {currentUser ? (
-        <OptionsLink as='div' onClick={() => auth.signOut()}>
+        <OptionsLink as='div' onClick={signOutStart}>
           {/* Note the as='div' rendering OptionsLink as a div
               despite the styled-component being a react-router-dom Link */}
           SIGN OUT
@@ -52,6 +53,13 @@ const mapStateToProps = createStructuredSelector({
   hidden: selectCartHidden,
 });
 
-export default compose(withRouter, connect(mapStateToProps))(Header);
+const mapDispatchToProps = (dispatch) => ({
+  signOutStart: () => dispatch(signOutStart()),
+});
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(Header);
 // Leaving this in as an example even though withRouter is not used
 // When we use a React hook with connect we need to use the compose function from redux

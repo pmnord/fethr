@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import { connect } from "react-redux";
-import { addCartItem } from "../../redux/cart/cart.actions";
+import { connect } from 'react-redux';
+import { addCartItem } from '../../redux/cart/cart.actions';
 
 import {
   CollectionItemContainer,
@@ -10,11 +10,14 @@ import {
   InvertedButton,
   Name,
   Price,
-} from "./collection-item.styles";
+} from './collection-item.styles';
 
 const CollectionItem = ({ item, addCartItem, className }) => {
   const { name, price, imageUrl } = item;
-  const handleAddItem = () => addCartItem(item);
+  const handleAddItem = () => {
+    console.log('click');
+    addCartItem(item);
+  };
 
   return (
     <CollectionItemContainer className={className}>

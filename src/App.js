@@ -16,7 +16,8 @@ import CheckoutPage from './pages/checkout/checkout.component';
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.checkUserSession();
+    const { checkUserSession } = this.props;
+    checkUserSession();
   }
 
   render() {
