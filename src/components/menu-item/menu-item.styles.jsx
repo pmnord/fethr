@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const MenuItemContainer = styled.div`
   min-width: 30%;
   height: 320px;
-  flex: 1 1 auto;
+  flex: 1 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,6 +36,12 @@ export const MenuItemContainer = styled.div`
 
   &:last-child {
     margin-left: 7.5px;
+  }
+
+  @media screen and (max-width: 800px) {
+    &.large {
+      height: 320px;
+    }
   }
 `;
 

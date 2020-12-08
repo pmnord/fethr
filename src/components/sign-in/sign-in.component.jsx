@@ -29,14 +29,6 @@ const SignIn = ({ googleSignInStart, emailSignInStart }) => {
     } catch (error) {
       setError(error);
     }
-
-    // try {
-    //   await auth.signInWithEmailAndPassword(email, password);
-    // setCredentials({ email: '', password: '' });
-    // } catch (error) {
-    //   console.log(error);
-    //   setError({ error });
-    // }
   };
 
   const handleChange = (event) => {
